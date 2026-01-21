@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Upload Document</h1>
+  <p class="muted">Upload your Word or PowerPoint file to check styling compliance</p>
+
+  {% if request.query_params.get('error') == 'unsupported' %}
+    <div class="alert">Unsupported file type. Please upload .docx or .pptx.</div>
+  {% endif %}
+
+  <form class="card upload-card" action="/upload" method="post" enctype="multipart/form-data">
+    <div id="dropzone" class="dropzone">
+      <div class="drop-icon">⬆️</div>
+      <div class="drop-title">Drag & drop your file here</div>
+      <div class="drop-sub">or click to browse</div>
+
+      <label class="btn-outline">
+        Choose File
+        <input id="fileInput" name="file" type="file" accept=".docx,.pptx" hidden />
+      </label>
+
+      <div class="muted small">Supported formats: .docx, .pptx</div>
+      <div id="fileName" class="muted small"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="submit">Analyze Document</button>
+    </div>
+  </form>
+
+  <div class="feature-row">
+    <div class="card feature">
+      <div class="feature-title">Document Analysis</div>
+      <div class="muted">Check fonts, colors, and formatting</div>
+    </div>
+    <div class="card feature">
+      <div class="feature-title">Brand Compliance</div>
+      <div class="muted">Verify logo placement and colors</div>
+    </div>
+    <div class="card feature">
+      <div class="feature-title">Tone & Grammar</div>
+      <div class="muted">Analyze tone-of-voice and spelling</div>
+    </div>
+  </div>
+
+  <script src="/static/js/upload.js"></script>
+{% endblock %}

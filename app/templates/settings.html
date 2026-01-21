@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Settings</h1>
+  <p class="muted">Configure your style checker preferences</p>
+
+  {% if request.query_params.get('saved') == '1' %}
+    <div class="alert success">Settings saved.</div>
+  {% endif %}
+
+  <form class="card" method="post" action="/settings">
+    <h3>Brand Guidelines</h3>
+
+    <div class="field">
+      <label>Primary Brand Color</label>
+      <div class="row">
+        <input name="primary_color" value="{{ settings.primary_color }}" />
+        <div class="color-box" style="background: {{ settings.primary_color }};"></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Required Font Family</label>
+      <input name="required_font_family" value="{{ settings.required_font_family }}" />
+    </div>
+
+    <div class="field">
+      <label>Logo Position</label>
+      <input name="logo_position" value="{{ settings.logo_position }}" />
+    </div>
+
+    <h3>Analysis Options</h3>
+
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-title">Check Font Compliance</div>
+        <div class="muted">Verify fonts match brand guidelines</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" name="check_fonts" {% if settings.check_fonts %}checked{% endif %}>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-title">Check Color Compliance</div>
+        <div class="muted">Verify colors match brand palette</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" name="check_colors" {% if settings.check_colors %}checked{% endif %}>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-title">Check Logo Placement</div>
+        <div class="muted">Verify logo is correctly positioned</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" name="check_logo" {% if settings.check_logo %}checked{% endif %}>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-title">Check Tone-of-Voice</div>
+        <div class="muted">Analyze text for tone consistency</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" name="check_tone" {% if settings.check_tone %}checked{% endif %}>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-title">Check Spelling & Grammar</div>
+        <div class="muted">Detect spelling and grammar issues</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" name="check_spelling" {% if settings.check_spelling %}checked{% endif %}>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <h3>Notifications</h3>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-title">Email Notifications</div>
+        <div class="muted">Receive email when analysis is complete</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" name="email_notifications" {% if settings.email_notifications %}checked{% endif %}>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="submit">Save Settings</button>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Laméco AI Style Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-badge" style="background: {{ settings.primary_color }};">L</div>
+        <div>
+          <div class="brand-title">Laméco</div>
+          <div class="brand-sub">AI Style Checker</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-item {{ 'active' if active=='upload' else '' }}" href="/upload">⬆️ Upload</a>
+        <a class="nav-item {{ 'active' if active=='results' else '' }}" href="/reports">📊 Results</a>
+        <a class="nav-item {{ 'active' if active=='reports' else '' }}" href="/reports">📄 Reports</a>
+        <a class="nav-item {{ 'active' if active=='settings' else '' }}" href="/settings">⚙️ Settings</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</body>
+</html>

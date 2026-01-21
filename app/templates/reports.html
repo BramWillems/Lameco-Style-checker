@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Reports</h1>
+  <p class="muted">View and download analysis reports</p>
+
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Document</th>
+          <th>Analyzed</th>
+          <th>PDF</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in reports %}
+          <tr>
+            <td>{{ r.filename }}</td>
+            <td class="muted">{{ r.created_at }}</td>
+            <td><a class="btn-outline" href="/report/{{ r.id }}/pdf">Download PDF</a></td>
+          </tr>
+        {% endfor %}
+        {% if reports|length == 0 %}
+          <tr><td colspan="3" class="muted">No reports yet. Upload a document to create one.</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
