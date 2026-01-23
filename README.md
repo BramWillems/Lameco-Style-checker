@@ -1,3 +1,5 @@
 This is the github page for the lameco style checker, in this github repo is all the code used for this project. This is a python project that uses a fastApi to host and run a website in which the user can check the styling of documents against settings. To run the webiste first create a virtual enviroment using the requirements.txt, these are all the packages required for the website to run. To run the website run uvicorn app.main:app --reload. If deployed on a server the IP and port can be changed in this command: uvicorn app.main:app --host 127.0.0.1 --port 9000
 
-For deployment the API key used in api.py needs to be changed to an api key that is owned, if you want to use this with an OpenAI chatgpt AI key change the file to:
+For deployment the API key used in api.py needs to be changed to an api key that is owned, if you want to use this with an OpenAI chatgpt AI key there may be changed needed in the api.py file, this file is currently setup for sapling api keys, there should be minimal changes nessacary to make this work. 
+
+
